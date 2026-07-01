@@ -8,8 +8,8 @@ async function main() {
   try {
     const updatedRows = await prisma.$executeRawUnsafe(`
       UPDATE "Program"
-      SET "cohort" = regexp_replace("cohort", '^PROFAK-', 'COHORT-')
-      WHERE "cohort" LIKE 'PROFAK-%'
+      SET "cohort" = regexp_replace("cohort", '^GoFinance-', 'COHORT-')
+      WHERE "cohort" LIKE 'GoFinance-%'
     `);
 
     console.log(`Updated ${updatedRows} program cohorts.`);

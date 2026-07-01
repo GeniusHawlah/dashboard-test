@@ -5,21 +5,20 @@ import {
   type ImageUploadMimeType,
 } from "@/utils/imageUploadTypes";
 
-const ProgramCoverImageUploadSchema = z
-  .object({
-    dataUrl: z.string().min(1, { error: "Cover image upload is required" }),
-    fileName: z.string().optional(),
-    mimeType: z.enum(
-      [...IMAGE_UPLOAD_MIME_TYPES] as [
-        ImageUploadMimeType,
-        ...ImageUploadMimeType[],
-      ],
-      { error: "Cover image type is required" },
-    ),
-    size: z.coerce.number().int().nonnegative({
-      error: "Cover image size is invalid",
-    }),
-  });
+const ProgramCoverImageUploadSchema = z.object({
+  dataUrl: z.string().min(1, { error: "Cover image upload is required" }),
+  fileName: z.string().optional(),
+  mimeType: z.enum(
+    [...IMAGE_UPLOAD_MIME_TYPES] as [
+      ImageUploadMimeType,
+      ...ImageUploadMimeType[],
+    ],
+    { error: "Cover image type is required" },
+  ),
+  size: z.coerce.number().int().nonnegative({
+    error: "Cover image size is invalid",
+  }),
+});
 
 extendZodWithOpenApi(z);
 
@@ -30,7 +29,7 @@ export const CreateProgramSchema = z
       .trim()
       .min(2, { error: "Program name must be at least 2 characters long" })
       .max(150, { error: "Program name cannot exceed 150 characters" })
-      .openapi({ example: "ProFak Science Mentorship" }),
+      .openapi({ example: "GoFinance Science Mentorship" }),
     description: z
       .string()
       .trim()
@@ -41,16 +40,17 @@ export const CreateProgramSchema = z
       .or(z.literal(""))
       .transform((value) => (value === "" ? undefined : value))
       .openapi({
-        example: "A structured mentorship program for aspiring science leaders.",
+        example:
+          "A structured mentorship program for aspiring science leaders.",
       }),
-    price: z
-      .coerce.number({ error: "Program price is required" })
+    price: z.coerce
+      .number({ error: "Program price is required" })
       .min(0, { error: "Program price cannot be negative" })
       .default(0)
       .openapi({ example: 0 }),
     isActive: z.boolean().optional().default(false).openapi({ example: false }),
-    applicationOpensAt: z
-      .coerce.date({ error: "Application open date is invalid" })
+    applicationOpensAt: z.coerce
+      .date({ error: "Application open date is invalid" })
       .optional()
       .or(z.literal(""))
       .transform((value) => (value === "" ? undefined : value))
@@ -58,14 +58,14 @@ export const CreateProgramSchema = z
     startsAt: z.coerce
       .date({ error: "Program start date is required" })
       .openapi({ example: "2026-04-01T09:00:00.000Z" }),
-    endsAt: z
-      .coerce.date({ error: "Program end date is invalid" })
+    endsAt: z.coerce
+      .date({ error: "Program end date is invalid" })
       .optional()
       .or(z.literal(""))
       .transform((value) => (value === "" ? undefined : value))
       .openapi({ example: "2026-07-01T09:00:00.000Z" }),
-    applicationClosesAt: z
-      .coerce.date({ error: "Application close date is invalid" })
+    applicationClosesAt: z.coerce
+      .date({ error: "Application close date is invalid" })
       .optional()
       .or(z.literal(""))
       .transform((value) => (value === "" ? undefined : value))
@@ -90,12 +90,9 @@ export const CreateProgramSchema = z
       }),
     coverImage: z
       .union([
-        z
-          .string()
-          .trim()
-          .max(2048, {
-            error: "Cover image URL cannot exceed 2048 characters",
-          }),
+        z.string().trim().max(2048, {
+          error: "Cover image URL cannot exceed 2048 characters",
+        }),
         ProgramCoverImageUploadSchema,
       ])
       .optional()
@@ -117,7 +114,8 @@ export const CreateProgramSchema = z
       !data.applicationOpensAt ||
       data.applicationOpensAt.getTime() <= data.startsAt.getTime(),
     {
-      error: "Application open date must be on or before the program start date",
+      error:
+        "Application open date must be on or before the program start date",
       path: ["applicationOpensAt"],
     },
   )
@@ -136,7 +134,8 @@ export const CreateProgramSchema = z
       !data.applicationClosesAt ||
       data.applicationClosesAt.getTime() <= data.startsAt.getTime(),
     {
-      error: "Application close date must be on or before the program start date",
+      error:
+        "Application close date must be on or before the program start date",
       path: ["applicationClosesAt"],
     },
   )

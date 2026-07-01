@@ -13,14 +13,7 @@ const CLASSROOM_IDS = [
   "classroom-4",
 ];
 
-const CLASSES = [
-  "JS 1",
-  "JS 2",
-  "JS 3",
-  "SS 1",
-  "SS 2",
-  "SS 3",
-];
+const CLASSES = ["JS 1", "JS 2", "JS 3", "SS 1", "SS 2", "SS 3"];
 
 const CLASS_LEVEL_IDS_FOR_FAKE_DATA = [
   "class-level-1",
@@ -28,11 +21,7 @@ const CLASS_LEVEL_IDS_FOR_FAKE_DATA = [
   "class-level-3",
 ];
 
-const FEES = [
-  "Mentorship Fee",
-  "Program Resource Fee",
-  "Workshop Fee",
-];
+const FEES = ["Mentorship Fee", "Program Resource Fee", "Workshop Fee"];
 
 const FEE_IDS = ["fee-1", "fee-2", "fee-3"];
 
@@ -259,10 +248,7 @@ export function generateFakeAdminData() {
     firstName,
     lastName,
     email: faker.internet.email({ firstName, lastName }).toLowerCase(),
-    gender: faker.helpers.arrayElement([
-      Gender.MALE,
-      Gender.FEMALE,
-    ]),
+    gender: faker.helpers.arrayElement([Gender.MALE, Gender.FEMALE]),
     dateOfBirth: dateInputValue(
       faker.date.birthdate({ min: 24, max: 65, mode: "age" }),
     ),
@@ -301,7 +287,7 @@ export function generateFakeProgramData() {
       PROGRAM_REQUIREMENT_SUGGESTIONS[1] ?? "Stable internet access",
       PROGRAM_REQUIREMENT_SUGGESTIONS[4] ?? "Program commitment",
     ],
-    coverImage: `https://picsum.photos/seed/profak-program-${faker.string.alphanumeric(8)}/1280/800`,
+    coverImage: `https://picsum.photos/seed/GoFinance-program-${faker.string.alphanumeric(8)}/1280/800`,
   };
 }
 

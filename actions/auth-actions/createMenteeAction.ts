@@ -235,7 +235,7 @@ export default async function createMenteeAction(
       idCard: idCardUrl || undefined,
       programId: programId || undefined,
       role: UserRole.MENTEE,
-      callbackURL: RelativeRoutes.VERIFY_EMAIL_PAGE,
+      callbackURL: RelativeRoutes.LOGIN_PAGE,
     } satisfies SignUpEmailBodyInterface;
 
     await auth.api.signUpEmail({

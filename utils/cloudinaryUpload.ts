@@ -171,7 +171,7 @@ async function uploadPayloadToCloudinary(
   const deliveryType: CloudinaryDeliveryType =
     options.kind === "id-card" ? "authenticated" : "upload";
   const timestamp = Math.floor(Date.now() / 1000);
-  const rootFolder = process.env.CLOUDINARY_UPLOAD_FOLDER || "ProFak_SIF";
+  const rootFolder = process.env.CLOUDINARY_UPLOAD_FOLDER || "GoFinance_SIF";
   const existingPublicId = getCloudinaryPublicIdFromUrl(options.existingValue);
   const folder = `${rootFolder}/${options.folder || options.kind}`;
   const publicIdPrefix = sanitizePublicIdPart(

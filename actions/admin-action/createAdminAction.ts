@@ -306,7 +306,7 @@ export default async function createAdminAction(
         role,
         status: UserStatus.ACTIVE,
         isFirstLogin: true,
-        callbackURL: RelativeRoutes.VERIFY_EMAIL_PAGE,
+        callbackURL: RelativeRoutes.LOGIN_PAGE,
       },
     });
 

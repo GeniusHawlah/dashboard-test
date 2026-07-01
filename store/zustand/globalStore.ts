@@ -33,7 +33,7 @@ type GlobalStoreInterface = {
   setIsRouting: (value: boolean) => void;
 };
 
-const MODAL_HISTORY_STATE_KEY = "__profakModal";
+const MODAL_HISTORY_STATE_KEY = "__GoFinanceModal";
 
 export const globalStore = create<GlobalStoreInterface>()(
   devtools(

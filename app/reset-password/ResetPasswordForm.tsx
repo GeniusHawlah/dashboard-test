@@ -203,10 +203,10 @@ function ResetPasswordForm({
 
       <div className="space-y-3 text-center text-sm text-slate-600">
         <Link
-          href={RelativeRoutes.FORGOT_PASSWORD_PAGE}
+          href={RelativeRoutes.LOGIN_PAGE}
           className="block font-semibold text-blue-600 transition hover:text-blue-700"
         >
-          Need a new code?
+          Back to login
         </Link>
         <Link
           href={RelativeRoutes.LOGIN_PAGE}

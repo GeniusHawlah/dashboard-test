@@ -13,7 +13,7 @@ import {
   useState,
 } from "react";
 
-const RESEND_STORAGE_KEY = "profak:forgot-password-resend";
+const RESEND_STORAGE_KEY = "GoFinance:forgot-password-resend";
 const RESEND_DELAY_SECONDS = 30;
 
 type ResendCooldownRecord = {
@@ -229,12 +229,10 @@ function ForgotPasswordForm({ initialEmail = "" }: { initialEmail?: string }) {
       <div className="space-y-3 text-center text-sm text-slate-600">
         {forgotPasswordFormState.success && (
           <Link
-            href={`${RelativeRoutes.RESET_PASSWORD_PAGE}?email=${encodeURIComponent(
-              normalizedEmail,
-            )}`}
+            href={RelativeRoutes.LOGIN_PAGE}
             className="font-semibold text-blue-600 transition hover:text-blue-700"
           >
-            I have my code, continue to reset password
+            Back to login
           </Link>
         )}
 

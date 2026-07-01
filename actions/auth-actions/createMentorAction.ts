@@ -230,7 +230,7 @@ export default async function createMentorAction(
       idCard: idCardUrl || undefined,
       programId: programId || undefined,
       role: UserRole.MENTOR,
-      callbackURL: RelativeRoutes.VERIFY_EMAIL_PAGE,
+      callbackURL: RelativeRoutes.LOGIN_PAGE,
     } satisfies SignUpEmailBodyInterface;
 
     await auth.api.signUpEmail({

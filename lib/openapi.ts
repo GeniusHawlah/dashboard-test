@@ -1,4 +1,7 @@
-import { OpenAPIRegistry, OpenApiGeneratorV3 } from "@asteasolutions/zod-to-openapi";
+import {
+  OpenAPIRegistry,
+  OpenApiGeneratorV3,
+} from "@asteasolutions/zod-to-openapi";
 import * as z from "zod";
 import {
   CreateMenteeErrorSchema,
@@ -381,10 +384,7 @@ registry.registerPath({
   description:
     "Returns active programs and marks the ones the current user is enrolled in when a session exists.",
   tags: ["Programs"],
-  security: [
-    { [SESSION_COOKIE_SECURITY_SCHEME]: [] },
-    {},
-  ],
+  security: [{ [SESSION_COOKIE_SECURITY_SCHEME]: [] }, {}],
   responses: {
     200: {
       description: "Programs fetched successfully.",
@@ -412,10 +412,7 @@ registry.registerPath({
   description:
     "Returns a single program by id and marks whether the current user is enrolled when a session exists.",
   tags: ["Programs"],
-  security: [
-    { [SESSION_COOKIE_SECURITY_SCHEME]: [] },
-    {},
-  ],
+  security: [{ [SESSION_COOKIE_SECURITY_SCHEME]: [] }, {}],
   request: {
     params: z
       .object({
@@ -532,13 +529,15 @@ registry.registerPath({
   },
 });
 
-export const openApiSpec = new OpenApiGeneratorV3(registry.definitions).generateDocument({
+export const openApiSpec = new OpenApiGeneratorV3(
+  registry.definitions,
+).generateDocument({
   openapi: "3.0.3",
   info: {
-    title: "ProFak SIF API",
+    title: "GoFinance SIF API",
     version: "1.0.0",
     description:
-      "OpenAPI documentation for the ProFak Science Impactful Foundation API.",
+      "OpenAPI documentation for the GoFinance Science Impactful Foundation API.",
   },
   servers: [{ url: "/" }],
 });

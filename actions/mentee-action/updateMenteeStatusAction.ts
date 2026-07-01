@@ -286,7 +286,7 @@ export default async function updateMenteeStatusAction(
       process.env.NEXT_PUBLIC_BASE_URL?.trim() || "http://localhost:3000";
     const dashboardUrl =
       status === UserStatus.ACTIVE
-        ? `${appBaseUrl}${RelativeRoutes.MENTEE_HOMEPAGE}`
+        ? `${appBaseUrl}${RelativeRoutes.DASHBOARD_HOMEPAGE}`
         : undefined;
 
     try {

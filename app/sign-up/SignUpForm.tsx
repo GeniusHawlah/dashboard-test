@@ -1,12 +1,13 @@
 "use client";
 
-import { Eye, EyeOff, ImagePlus, Lock, Mail, User } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { type ChangeEvent, type FormEvent, useId, useState } from "react";
 import { UserRole } from "@/utils/prisma";
 
 import { authStore } from "@/store/zustand/authStore";
 import { globalStore } from "@/store/zustand/globalStore";
+import { buildPicsumPassport } from "@/utils/demo-auth";
 import { RelativeRoutes } from "@/utils/enum";
 
 function FieldError({ message }: { message?: string }) {
@@ -19,7 +20,6 @@ export default function SignUpForm() {
   const firstNameId = useId();
   const lastNameId = useId();
   const emailId = useId();
-  const passportId = useId();
   const passwordId = useId();
   const confirmPasswordId = useId();
 
@@ -33,7 +33,6 @@ export default function SignUpForm() {
     firstName: "",
     lastName: "",
     role: UserRole.ADMIN,
-    passport: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -58,8 +57,8 @@ export default function SignUpForm() {
       firstName: signupData.firstName.trim(),
       lastName: signupData.lastName.trim(),
       role: UserRole.ADMIN,
-      passport: signupData.passport.trim(),
       email: signupData.email.trim().toLowerCase(),
+      passport: buildPicsumPassport(signupData.email),
     });
   }
 
@@ -76,24 +75,6 @@ export default function SignUpForm() {
         </div>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <div className="relative">
-              <ImagePlus className="pointer-events-none absolute left-5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-300" />
-              <input
-                id={passportId}
-                name="passport"
-                type="url"
-                value={signupData.passport}
-                onChange={handleChange}
-                autoComplete="off"
-                placeholder="Profile Picture URL"
-                aria-invalid={Boolean(formErrors?.passport)}
-                className="h-14 w-full rounded-full border border-slate-200 bg-white pl-12 pr-5 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-300 focus:border-[#0c74e7] focus:shadow-[0_0_0_4px_rgba(12,116,231,0.08)]"
-              />
-            </div>
-            <FieldError message={formErrors?.passport?.errors?.[0]} />
-          </div>
-
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <div className="relative">

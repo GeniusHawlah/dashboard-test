@@ -32,8 +32,8 @@ import {
 
 const GENERAL_FETCH_ERROR_MESSAGE =
   "Something went wrong. Please try again later.";
-const PASSWORD_RESET_SUCCESS_FLAG = "profak:password-reset-success";
-const GENERAL_LOGOUT_ERROR_MESSAGE = "Failed to log out. Please try again.";    
+const PASSWORD_RESET_SUCCESS_FLAG = "GoFinance:password-reset-success";
+const GENERAL_LOGOUT_ERROR_MESSAGE = "Failed to log out. Please try again.";
 
 export const authStore = create<AuthStoreInterface>()(
   devtools(
@@ -115,8 +115,7 @@ export const authStore = create<AuthStoreInterface>()(
             logActionSuccess({
               action: "authStore.signUpHandler",
               message:
-                response.success?.message ||
-                "Account created successfully.",
+                response.success?.message || "Account created successfully.",
               context: {
                 email: signUpData.email,
               },
@@ -450,12 +449,12 @@ export const authStore = create<AuthStoreInterface>()(
               message,
               context: {
                 email: resetPasswordData.email,
-                redirectTo: RelativeRoutes.PASSWORD_RESET_SUCCESS_PAGE,
+                redirectTo: RelativeRoutes.LOGIN_PAGE,
               },
             });
             toast.success(message);
             window.sessionStorage.setItem(PASSWORD_RESET_SUCCESS_FLAG, "true");
-            location.replace(RelativeRoutes.PASSWORD_RESET_SUCCESS_PAGE);
+            location.replace(RelativeRoutes.LOGIN_PAGE);
             return true;
           } catch (e: unknown) {
             globalStore.setState({ generalLoading: false });

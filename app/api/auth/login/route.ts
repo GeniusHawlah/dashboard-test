@@ -167,11 +167,11 @@ export async function POST(request: Request) {
       message === "Email not verified" || isExpectedLoginError(message, status);
 
     if (message === "Email not verified") {
-      await auth.api
+        await auth.api
         .sendVerificationEmail({
           body: {
             email: email.trim().toLowerCase(),
-            callbackURL: RelativeRoutes.VERIFY_EMAIL_PAGE,
+            callbackURL: RelativeRoutes.LOGIN_PAGE,
           },
         })
         .catch(() => {});

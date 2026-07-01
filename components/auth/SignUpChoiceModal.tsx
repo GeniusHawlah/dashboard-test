@@ -22,8 +22,8 @@ export default function SignUpChoiceModal() {
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         <Button asChild className="h-12 w-full rounded-2xl text-sm font-semibold">
-          <Link href={RelativeRoutes.MENTEE_SIGNUP_PAGE} onClick={closeModal}>
-            As Mentee
+          <Link href={RelativeRoutes.SIGNUP_PAGE} onClick={closeModal}>
+            Sign up
           </Link>
         </Button>
         <Button
@@ -31,8 +31,8 @@ export default function SignUpChoiceModal() {
           variant="outline"
           className="h-12 w-full rounded-2xl border-slate-200 text-sm font-semibold text-slate-700"
         >
-          <Link href={RelativeRoutes.MENTOR_SIGNUP_PAGE} onClick={closeModal}>
-            As Mentor
+          <Link href={RelativeRoutes.LOGIN_PAGE} onClick={closeModal}>
+            Log in
           </Link>
         </Button>
       </div>

@@ -1,7 +1,7 @@
 import type { ContactUsRequest } from "@/utils/zod/contactUsSchema";
 
-const BRAND_NAME = "ProFak SIF";
-const BRAND_FULL_NAME = "ProFak Science Impactful Foundation";
+const BRAND_NAME = "GoFinance SIF";
+const BRAND_FULL_NAME = "GoFinance Science Impactful Foundation";
 
 function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, (character) => {
@@ -100,8 +100,7 @@ export function buildContactUsEmail({
   return buildEmailShell({
     preheader: `New contact message from ${name}`,
     headline: "New Contact Message",
-    intro:
-      "A visitor just reached out through the ProFak SIF contact form.",
+    intro: "A visitor just reached out through the GoFinance SIF contact form.",
     footer:
       "Reply directly to the sender using the email address above. The message below is formatted for quick review.",
     body: `
@@ -129,10 +128,10 @@ export function buildMenteeWelcomeEmail(firstName: string) {
       "Your account is currently awaiting approval. If you did not submit this request, please contact support.",
     body: `
       <div style="font-size:15px;line-height:1.9;color:#0f172a;">
-        <p style="margin:0 0 14px;">Thank you for registering with ProFak SIF.</p>
+        <p style="margin:0 0 14px;">Thank you for registering with GoFinance SIF.</p>
         <p style="margin:0 0 14px;">We have received your details and will review your application shortly. Once your account is approved, you will be able to continue with the mentorship process.</p>
         <div style="margin:22px 0 0;border-left:4px solid #1d4ed8;background:#eff6ff;padding:16px 18px;border-radius:0 14px 14px 0;">
-          <p style="margin:0;font-size:14px;line-height:1.8;color:#1e3a8a;font-weight:600;">Next step: wait for approval from the ProFak SIF team.</p>
+          <p style="margin:0;font-size:14px;line-height:1.8;color:#1e3a8a;font-weight:600;">Next step: wait for approval from the GoFinance SIF team.</p>
         </div>
       </div>
     `,
@@ -157,7 +156,7 @@ export function buildMenteeApprovalEmail({
       "You can now sign in to continue your mentorship journey and track your progress.",
     body: `
       <div style="font-size:15px;line-height:1.9;color:#0f172a;">
-        <p style="margin:0 0 14px;">Your mentee registration has been approved by the ProFak SIF team.</p>
+        <p style="margin:0 0 14px;">Your mentee registration has been approved by the GoFinance SIF team.</p>
         <p style="margin:0 0 18px;">You can now access your dashboard, view your program, and continue with the next steps in your mentorship journey.</p>
         <div style="margin:22px 0 18px;text-align:center;">
           <a href="${safeDashboardUrl}" target="_blank" rel="noreferrer" style="display:inline-block;border-radius:9999px;background:#1d4ed8;padding:14px 22px;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">
@@ -187,7 +186,7 @@ export function buildMenteeStatusUpdateEmail({
     headline: "Account Status Updated",
     intro: `Hello ${safeName}, your account status is now ${safeStatus}.`,
     footer:
-      "If you have questions about this update, please contact the ProFak SIF team.",
+      "If you have questions about this update, please contact the GoFinance SIF team.",
     body: `
       <div style="font-size:15px;line-height:1.9;color:#0f172a;">
         <p style="margin:0 0 14px;">Your mentorship account has been updated successfully.</p>
@@ -213,14 +212,14 @@ export function buildVerificationEmail(url: string) {
   const safeUrl = escapeHtml(url);
 
   return buildEmailShell({
-    preheader: "Verify your ProFak SIF email address",
+    preheader: "Verify your GoFinance SIF email address",
     headline: "Verify Your Email",
     intro: "One more step to secure your account.",
     footer:
       "If you did not create this account, you can safely ignore this email.",
     body: `
       <div style="font-size:15px;line-height:1.9;color:#0f172a;">
-        <p style="margin:0 0 14px;">Please verify your email address to activate your ProFak SIF account.</p>
+        <p style="margin:0 0 14px;">Please verify your email address to activate your GoFinance SIF account.</p>
         <p style="margin:0 0 18px;">Click the button below to confirm your email and continue.</p>
         <div style="margin:22px 0 18px;text-align:center;">
           <a href="${safeUrl}" target="_blank" rel="noreferrer" style="display:inline-block;border-radius:9999px;background:#1d4ed8;padding:14px 22px;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">
@@ -280,7 +279,7 @@ export function buildPasswordResetSuccessEmail(name: string) {
         <p style="margin:0 0 14px;">Your password reset is complete.</p>
         <p style="margin:0 0 14px;">For security, we signed you out of your active sessions. You can now sign in again with your new password.</p>
         <div style="margin:22px 0 0;border-left:4px solid #0f172a;background:#f8fafc;padding:16px 18px;border-radius:0 14px 14px 0;">
-          <p style="margin:0;font-size:14px;line-height:1.8;color:#334155;font-weight:600;">If this was not you, please reach out to the ProFak SIF team immediately.</p>
+          <p style="margin:0;font-size:14px;line-height:1.8;color:#334155;font-weight:600;">If this was not you, please reach out to the GoFinance SIF team immediately.</p>
         </div>
       </div>
     `,
@@ -308,7 +307,7 @@ export function buildProgramApplicationMenteeSuccessEmail({
       "Your application is ready to go. Check your dashboard anytime for program and mentor updates.",
     body: `
       <div style="font-size:15px;line-height:1.9;color:#0f172a;">
-        <p style="margin:0 0 14px;">Everything is in place for your next step with ProFak SIF.</p>
+        <p style="margin:0 0 14px;">Everything is in place for your next step with GoFinance SIF.</p>
         <p style="margin:0 0 18px;">Use the button below to open your dashboard whenever you are ready.</p>
         <div style="margin:22px 0 18px;text-align:center;">
           <a href="${safeDashboardUrl}" target="_blank" rel="noreferrer" style="display:inline-block;border-radius:9999px;background:#1d4ed8;padding:14px 22px;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">
@@ -484,8 +483,7 @@ export function buildEventCreatedMentorNoticeEmail({
     preheader: `A new event has been created for ${safeProgramName}`,
     headline: "Event Created",
     intro: `Hello ${safeName}, a new event has been created for your program.`,
-    footer:
-      "Review the new event and guide your mentees accordingly.",
+    footer: "Review the new event and guide your mentees accordingly.",
     body: `
       <div style="font-size:15px;line-height:1.9;color:#0f172a;">
         <p style="margin:0 0 14px;">A new event is now available for the program you support.</p>

@@ -66,7 +66,7 @@ export async function sendEmail({
   }
 
   const brandedFromName =
-    fromName?.trim() || process.env.RESEND_FROM_NAME?.trim() || "ProFak SIF";
+    fromName?.trim() || process.env.RESEND_FROM_NAME?.trim() || "GoFinance SIF";
   const fromAddress = brandedFromName ? `${brandedFromName} <${from}>` : from;
 
   const { error } = await getResendClient().emails.send({

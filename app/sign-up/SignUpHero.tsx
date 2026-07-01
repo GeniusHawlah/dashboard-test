@@ -8,7 +8,7 @@ export default function SignUpHero() {
 
       <div className="relative z-10 max-w-xl">
         <p className="text-[2.35rem] font-semibold tracking-tight xl:text-[3.1rem]">
-          Join ProFak Logistics
+          Join GoFinance Logistics
         </p>
         <p className="mt-3 max-w-md text-lg leading-8 text-white/90 xl:text-xl">
           Create your account, try the onboarding flow, and see how the full

@@ -289,8 +289,8 @@ export default async function updateEventAction(
     });
 
     const appBaseUrl = getAppBaseUrl();
-    const menteeDashboardUrl = `${appBaseUrl}${RelativeRoutes.MENTEE_HOMEPAGE}`;
-    const mentorScoresUrl = `${appBaseUrl}${RelativeRoutes.MENTOR_SCORES}`;
+    const menteeDashboardUrl = `${appBaseUrl}${RelativeRoutes.DASHBOARD_HOMEPAGE}`;
+    const mentorScoresUrl = `${appBaseUrl}${RelativeRoutes.DASHBOARD_HOMEPAGE}`;
 
     const menteeRecipients = event.program.enrollments
       .map((enrollment) => enrollment.user)

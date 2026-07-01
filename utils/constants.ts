@@ -14,7 +14,7 @@ export const brainBehindContent = {
   socialHeading: "Follow his work",
   socialLinks: [
     {
-      href: process.env.NEXT_PUBLIC_PROFAK_PERSONAL_FB_LINK?.trim() || "#",
+      href: process.env.NEXT_PUBLIC_GoFinance_PERSONAL_FB_LINK?.trim() || "#",
       label: "Facebook",
       icon: "ri:facebook-fill",
     },
@@ -96,8 +96,8 @@ export const brainBehindContent = {
 export const DATABASE_NOT_READY_LOG_MESSAGE =
   "The database is missing required tables. Apply the Prisma migrations to this new database.";
 
-export const ACCESS_TOKEN_COOKIE_NAME = "profak:access-token";
-export const AUTH_SESSION_COOKIE_NAME = "profak:session";
+export const ACCESS_TOKEN_COOKIE_NAME = "GoFinance:access-token";
+export const AUTH_SESSION_COOKIE_NAME = "GoFinance:session";
 export const AUTH_COOKIE_REMEMBER_ME_MAX_AGE = 60 * 60 * 24 * 30;
 
 export const PROGRAM_BENEFIT_SUGGESTIONS = [

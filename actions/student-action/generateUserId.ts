@@ -14,7 +14,7 @@ export default async function generateUserId(): Promise<{
   };
 }> {
   const yearCode = new Date().getFullYear().toString().slice(-2);
-  const counterId = `PROFAK-${yearCode}`;
+  const counterId = `GoFinance-${yearCode}`;
 
   try {
     const counter = await db.counter.upsert({
@@ -27,7 +27,7 @@ export default async function generateUserId(): Promise<{
 
     return {
       success: {
-        userId: `PROFAK${yearCode}-${seqStr}`,
+        userId: `GoFinance${yearCode}-${seqStr}`,
         message: "User ID generated successfully.",
       },
     };

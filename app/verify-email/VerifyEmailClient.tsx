@@ -106,13 +106,13 @@ export default function VerifyEmailClient({ token }: { token: string }) {
             asChild
             className="h-12 rounded-2xl px-6 text-sm font-semibold"
           >
-            <Link href={RelativeRoutes.LOGIN_PAGE}>Go to login</Link>
-          </Button>
-          <Link
-            href={RelativeRoutes.MENTEE_SIGNUP_PAGE}
-            className="inline-flex h-12 items-center justify-center rounded-2xl border border-slate-200 px-6 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-          >
-            Create account again
+          <Link href={RelativeRoutes.LOGIN_PAGE}>Go to login</Link>
+        </Button>
+        <Link
+          href={RelativeRoutes.SIGNUP_PAGE}
+          className="inline-flex h-12 items-center justify-center rounded-2xl border border-slate-200 px-6 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+        >
+          Create account again
           </Link>
         </div>
       </div>

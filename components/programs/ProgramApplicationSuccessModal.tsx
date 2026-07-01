@@ -28,7 +28,7 @@ export default function ProgramApplicationSuccessModal() {
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         <Button asChild className="h-12 w-full rounded-2xl text-sm font-semibold">
-          <Link href={RelativeRoutes.MENTEE_HOMEPAGE} onClick={closeModal}>
+          <Link href={RelativeRoutes.DASHBOARD_HOMEPAGE} onClick={closeModal}>
             Go to Dashboard
           </Link>
         </Button>
