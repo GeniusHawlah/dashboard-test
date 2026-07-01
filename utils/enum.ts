@@ -20,7 +20,7 @@ export enum RelativeRoutes {
   SUPER_ADMIN_SESSION_MANAGEMENT = "/super-admin/session-management",
   MENTEE_HOMEPAGE = "/mentee",
   MENTOR_MY_MENTEES = "/mentor/my-mentees",
-  LOGIN_PAGE = "/login",
+  LOGIN_PAGE = "/",
   SIGNUP_PAGE = "/sign-up",
   VERIFY_EMAIL_PAGE = "/verify-email",
   FORGOT_PASSWORD_PAGE = "/forgot-password",
