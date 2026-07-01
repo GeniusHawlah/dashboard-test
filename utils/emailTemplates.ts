@@ -1,4 +1,9 @@
-import type { ContactUsRequest } from "@/utils/zod/contactUsSchema";
+type ContactUsRequest = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
 const BRAND_NAME = "GoFinance SIF";
 const BRAND_FULL_NAME = "GoFinance Science Impactful Foundation";

@@ -1,51 +1,10 @@
 import { Gender, UserStatus as PrismaUserStatus } from "@/utils/prisma";
 import type { Prisma, UserRole } from "@/utils/prisma";
 import { ReactNode } from "react";
-import type { UpdateMenteeStatusActionData } from "@/actions/mentee-action/updateMenteeStatusAction";
 import type { FakeAuthSession } from "@/utils/auth-session";
 import type { EducationLevelValue } from "./education-level";
 import type { ImageInputValue } from "./imageUploadTypes";
 import { RegType, SortKeys, SortOrders, UserStatus } from "./enum";
-
-//#------------CREATE GUARDIAN-------------------
-
-export interface CreateGuardianFormInterface {
-  title: string;
-
-  firstName: string;
-  lastName: string;
-
-  phoneNumber: string;
-  email: string;
-  address: string;
-  gender: Gender;
-  // passport?: ImageInputValue;
-
-  relationship: string;
-}
-
-export interface CreateGuardianFormErrors {
-  firstName?: { errors: string[] };
-  lastName?: { errors: string[] };
-  email?: { errors: string[] };
-  title?: { errors: string[] };
-  gender?: { errors: string[] };
-  phoneNumber?: { errors: string[] };
-  address?: { errors: string[] };
-  passport?: { errors: string[] };
-  idCard?: { errors: string[] };
-}
-
-export interface CreateGuardianFormState {
-  error?: {
-    message: string;
-    formErrors?: CreateGuardianFormErrors;
-  };
-
-  success?: {
-    message: string;
-  };
-}
 
 //#--------------LOGIN-----------------
 
@@ -97,280 +56,6 @@ export interface SignUpFormStateInterface {
     message: string;
     formErrors?: SignUpFormErrorsInterface;
     statusCode?: number;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-export interface ForgotPasswordDataInterface {
-  email: string;
-}
-
-export interface ForgotPasswordFormErrors {
-  email?: { errors: string[] };
-}
-
-export interface ForgotPasswordFormStateInterface {
-  error?: {
-    message: string;
-    formErrors?: ForgotPasswordFormErrors;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-export interface ResetPasswordDataInterface {
-  email: string;
-  code: string;
-  password: string;
-  confirmPassword: string;
-}
-
-export interface ResetPasswordFormErrors {
-  email?: { errors: string[] };
-  code?: { errors: string[] };
-  password?: { errors: string[] };
-  confirmPassword?: { errors: string[] };
-}
-
-export interface ResetPasswordFormStateInterface {
-  error?: {
-    message: string;
-    formErrors?: ResetPasswordFormErrors;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-export interface InitialPasswordDataInterface {
-  newPassword: string;
-  confirmNewPassword: string;
-}
-
-export interface InitialPasswordFormErrorsInterface {
-  newPassword?: { errors: string[] };
-  confirmNewPassword?: { errors: string[] };
-}
-
-export interface InitialPasswordFormStateInterface {
-  error?: {
-    message: string;
-    formErrors?: InitialPasswordFormErrorsInterface;
-  };
-  success?: {
-    message: string;
-    redirectTo: string;
-  };
-}
-
-//#-------------CONTACT US------------------
-
-export interface ContactUsFormInterface {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
-export interface ContactUsFormErrors {
-  name?: { errors: string[] };
-  email?: { errors: string[] };
-  subject?: { errors: string[] };
-  message?: { errors: string[] };
-}
-
-export interface ContactUsFormStateInterface {
-  error?: {
-    message: string;
-    formErrors?: ContactUsFormErrors;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-//#-------------CREATE SCORE------------------
-
-export interface CreateScoreFormInterface {
-  eventScoreId: string;
-  subjectId: string;
-  caScore: number;
-  examScore: number;
-  remark?: string;
-}
-
-export interface CreateScoreFormErrors {
-  eventScoreId?: { errors: string[] };
-  subjectId?: { errors: string[] };
-  caScore?: { errors: string[] };
-  examScore?: { errors: string[] };
-  remark?: { errors: string[] };
-}
-
-export interface CreateScoreFormState {
-  error?: {
-    message: string;
-    formErrors?: CreateScoreFormErrors;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-//#-------------------------------
-export interface CreateSessionFormInterface {
-  name: string;
-  isCurrent?: boolean;
-}
-
-export interface CreateSessionFormErrors {
-  name?: { errors: string[] };
-  isCurrent?: { errors: string[] };
-}
-
-export interface CreateSessionFormState {
-  error?: {
-    message: string;
-    formErrors?: CreateSessionFormErrors;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-//#------------CREATE PROGRAM-------------------
-
-export interface CreateProgramDataInterface {
-  name: string;
-  description?: string;
-  price: number;
-  isActive?: boolean;
-  applicationOpensAt?: Date;
-  startsAt: Date;
-  endsAt?: Date;
-  applicationClosesAt?: Date;
-  programBenefits: string[];
-  requirements: string[];
-  mentorIds: string[];
-  coverImage?: ImageInputValue;
-}
-
-export interface CreateProgramFormDataInterface {
-  name: string;
-  description: string;
-  price: string;
-  isActive: boolean;
-  applicationOpensAt: string;
-  applicationClosesAt: string;
-  startsAt: string;
-  endsAt: string;
-  programBenefits: string[];
-  requirements: string[];
-  mentorIds: string[];
-  coverImage: ImageInputValue;
-}
-
-export interface CreateProgramFormErrors {
-  name?: { errors: string[] };
-  description?: { errors: string[] };
-  price?: { errors: string[] };
-  isActive?: { errors: string[] };
-  applicationOpensAt?: { errors: string[] };
-  startsAt?: { errors: string[] };
-  endsAt?: { errors: string[] };
-  applicationClosesAt?: { errors: string[] };
-  programBenefits?: { errors: string[] };
-  requirements?: { errors: string[] };
-  mentorIds?: { errors: string[] };
-  coverImage?: { errors: string[] };
-}
-
-export interface CreateProgramFormState {
-  error?: {
-    message: string;
-    formErrors?: CreateProgramFormErrors;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-//#------------CREATE EVENT-------------------
-
-export interface CreateEventDataInterface {
-  programId: string;
-  title: string;
-  description?: string;
-  note?: string;
-  venue: string;
-  eventDate: Date;
-  eventTime: string;
-}
-
-export interface CreateEventFormDataInterface {
-  programId: string;
-  title: string;
-  description: string;
-  note: string;
-  venue: string;
-  eventDate: string;
-  eventTime: string;
-}
-
-export interface CreateEventFormErrors {
-  programId?: { errors: string[] };
-  title?: { errors: string[] };
-  description?: { errors: string[] };
-  note?: { errors: string[] };
-  venue?: { errors: string[] };
-  eventDate?: { errors: string[] };
-  eventTime?: { errors: string[] };
-}
-
-export interface CreateEventFormState {
-  error?: {
-    message: string;
-    formErrors?: CreateEventFormErrors;
-  };
-  success?: {
-    message: string;
-  };
-}
-
-export interface UpdateEventDataInterface {
-  title: string;
-  description?: string;
-  note?: string;
-  venue: string;
-  eventDate: Date;
-  eventTime: string;
-}
-
-export interface UpdateEventFormDataInterface {
-  title: string;
-  description: string;
-  note: string;
-  venue: string;
-  eventDate: string;
-  eventTime: string;
-}
-
-export interface UpdateEventFormErrors {
-  title?: { errors: string[] };
-  description?: { errors: string[] };
-  note?: { errors: string[] };
-  venue?: { errors: string[] };
-  eventDate?: { errors: string[] };
-  eventTime?: { errors: string[] };
-}
-
-export interface UpdateEventFormState {
-  error?: {
-    message: string;
-    formErrors?: UpdateEventFormErrors;
   };
   success?: {
     message: string;
@@ -479,9 +164,6 @@ export interface AdminStoreInterface {
   resetCreateAdminFormData: () => void;
   createAdminFormState: CreateAdminFormStateInterface;
   setCreateAdminFormState: (value: CreateAdminFormStateInterface) => void;
-  createAdminHandler: (
-    adminData: import("@/actions/admin-action/createAdminAction").CreateAdminData,
-  ) => Promise<boolean>;
 }
 
 export interface ProgramStoreInterface {
@@ -534,9 +216,7 @@ export interface EmailStoreInterface {
   resetContactData: () => void;
   contactFormState: ContactUsFormStateInterface | null;
   setContactFormState: (value: ContactUsFormStateInterface | null) => void;
-  contactUsHandler: (
-    contactData: ContactUsFormInterface,
-  ) => Promise<boolean>;
+  contactUsHandler: (contactData: ContactUsFormInterface) => Promise<boolean>;
 }
 
 export interface MenteeRegDataInterface {
@@ -593,9 +273,6 @@ export interface MenteeStoreInterface {
   regFormState: MenteeRegFormStateInterface;
   setRegFormState: (value: MenteeRegFormStateInterface) => void;
   registerHandler: (regData: MenteeRegDataInterface) => Promise<boolean>;
-  updateMenteeStatusHandler: (
-    data: UpdateMenteeStatusActionData,
-  ) => Promise<boolean>;
 }
 
 export interface MentorRegDataInterface {
@@ -658,9 +335,7 @@ export interface EventStoreInterface {
   resetCreateEventFormData: () => void;
   createEventFormState: CreateEventFormState | null;
   setCreateEventFormState: (value: CreateEventFormState | null) => void;
-  createEventHandler: (
-    eventData: CreateEventDataInterface,
-  ) => Promise<boolean>;
+  createEventHandler: (eventData: CreateEventDataInterface) => Promise<boolean>;
   updateEventFormData: UpdateEventFormDataInterface;
   setUpdateEventFormData: (value: UpdateEventFormDataInterface) => void;
   resetUpdateEventFormData: () => void;
@@ -677,9 +352,7 @@ export interface EventScoreStoreInterface {
     eventScoreData: CreateEventScoreFormInterface,
   ) => Promise<void>;
   eventScoreFormState: CreateEventScoreFormState | null;
-  setEventScoreFormState: (
-    value: CreateEventScoreFormState,
-  ) => void;
+  setEventScoreFormState: (value: CreateEventScoreFormState) => void;
 }
 
 export interface ScoreStoreInterface {

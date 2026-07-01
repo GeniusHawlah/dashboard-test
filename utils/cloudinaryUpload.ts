@@ -1,7 +1,6 @@
 import "server-only";
 
 import crypto from "crypto";
-import resolveProtectedIdCardUrlAction from "@/actions/protected-media-action/resolveProtectedIdCardUrlAction";
 import {
   getProtectedIdCardAssetFromUrl,
   getSignedAuthenticatedImageUrl,
@@ -253,17 +252,7 @@ export async function resolveImageInput(
   }
 
   if (typeof value === "string") {
-    const trimmed = value.trim();
-
-    if (options.kind === "id-card") {
-      const resolved = await resolveProtectedIdCardUrlAction(trimmed);
-
-      if (resolved) {
-        return resolved;
-      }
-    }
-
-    return trimmed;
+    return value.trim();
   }
 
   return "";
