@@ -9,7 +9,7 @@ export enum RelativeRoutes {
   MENTOR_HOMEPAGE = "/mentor",
   MENTOR_SCORES = "/mentor/scores",
   MENTOR_EVENTS = "/mentor/events",
-  ADMIN_HOMEPAGE = "/admin",
+  ADMIN_HOMEPAGE = "/dashboard ",
   ADMIN_PROGRAMS = "/admin/programs",
   ADMIN_MENTORS = "/admin/mentors",
   ADMIN_MENTEES = "/admin/mentees",
