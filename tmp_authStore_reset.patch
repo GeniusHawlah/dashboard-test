@@ -1,0 +1,80 @@
+diff --git a/store/zustand/authStore.ts b/store/zustand/authStore.ts
+--- a/store/zustand/authStore.ts
++++ b/store/zustand/authStore.ts
+@@
+-import requestOtpAction from "@/actions/auth-actions/requestOtpAction";
++import requestOtpAction from "@/actions/auth-actions/requestOtpAction";
++import resetPasswordAction from "@/actions/auth-actions/resetPasswordAction";
+@@
+-            const response = await fetch("/api/auth/reset-password", {
+-              method: "POST",
+-              headers: {
+-                "Content-Type": "application/json",
+-              },
+-              body: JSON.stringify({
+-                email: resetPasswordData.email.trim().toLowerCase(),
+-                code: resetPasswordData.code.trim().toUpperCase(),
+-                password: resetPasswordData.password,
+-                confirmPassword: resetPasswordData.confirmPassword,
+-              }),
+-            });
+-
+-            const payload = await readJsonResponse<{
+-              error?: {
+-                message?: string;
+-                formErrors?: Record<string, { errors: string[] }>;
+-              };
+-              success?: {
+-                message?: string;
+-              };
+-            }>(response);
+-
+-            if (!response.ok) {
+-              globalStore.setState({ generalLoading: false });
+-
+-              const message =
+-                payload?.error?.message ?? GENERAL_FETCH_ERROR_MESSAGE;
++            const result = await resetPasswordAction({
++              email: resetPasswordData.email.trim().toLowerCase(),
++              code: resetPasswordData.code.trim().toUpperCase(),
++              password: resetPasswordData.password,
++              confirmPassword: resetPasswordData.confirmPassword,
++            });
++
++            if (result.error) {
++              const message = result.error.message ?? GENERAL_FETCH_ERROR_MESSAGE;
+ 
+               set({
+                 resetPasswordFormState: {
+                   error: {
+                     message,
+-                    formErrors: payload?.error?.formErrors,
++                    formErrors: result.error.formErrors,
+                   },
+                 },
+               });
+@@
+-            const message =
+-              payload?.success?.message ?? "Password reset successfully.";
++            const message =
++              result.success?.message ?? "Your password has been reset successfully.";
+@@
+-            globalStore.setState({ generalLoading: false });
+             logActionSuccess({
+               action: "authStore.resetPasswordHandler",
+               message,
+@@
+-          } catch (e: unknown) {
+-            globalStore.setState({ generalLoading: false });
++          } catch (e: unknown) {
+ 
+             const message = networkError(guardError(e))
+               ? NETWORK_ERROR_MESSAGE
+               : guardError(e);
+@@
+             toast.error(message);
+             return false;
++          } finally {
++            globalStore.setState({ generalLoading: false });
+           }
+         },

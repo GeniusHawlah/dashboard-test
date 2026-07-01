@@ -1,0 +1,481 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "./generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE")
+}
+
+model Counter {
+  id  String @id
+  seq Int    @default(0)
+}
+
+model User {
+  id                   String                        @id @default(cuid())
+  schoolId             String                        @unique
+  email                String                        @unique
+  gender               Gender
+  userType             UserType?
+  firstName            String
+  middleName           String?
+  title                String?
+  lastName             String
+  username             String                        @unique
+  displayUsername      String                        @unique
+  password             String?
+  phoneNumber          String?
+  address              String?
+  dateOfBirth          DateTime
+  name                 String
+  emailVerified        Boolean?                      @default(false)
+  passport             String?
+  idCard               String?
+  guardianId           String?
+  classroomId          String?
+  classroom            Classroom?                    @relation(fields: [classroomId], references: [id])
+  behavior             String[]                      @default([])
+  status               UserStatus                    @default(UNAPPROVED)
+  isActive             Boolean?                      @default(true)
+  createdAt            DateTime                      @default(now())
+  updatedAt            DateTime                      @updatedAt
+  image                String?
+  role                 UserTechnicalRole[]           @default([STUDENT])
+  classOverseeing      ClassOverseer[]
+  updatedPayments      Payment[]                     @relation("PaymentLastUpdatedBy")
+  payments             Payment[]
+  results              Result[]
+  updatedScores        Score[]                       @relation("ScoreLastUpdatedBy")
+  teachingSubjects     TeacherAndSubjectJointTable[]
+  classroomEnrollments StudentClassroomEnrollment[]
+  studentPromotions    StudentPromotion[]            @relation("StudentPromotionStudent")
+  performedPromotions  StudentPromotion[]            @relation("StudentPromotionPerformedBy")
+  approvedPromotions   StudentPromotion[]            @relation("StudentPromotionApprovedBy")
+  accounts             Account[]                     @relation("UserAccounts")
+  sessions             Session[]                     @relation("UserSessions")
+  guardian             Guardian?                     @relation(fields: [guardianId], references: [id])
+
+  @@map("user")
+}
+
+model ClassOverseer {
+  id          String             @id @default(cuid())
+  userId      String
+  role        ClassOverseerRole?
+  classroomId String
+  createdAt   DateTime           @default(now())
+  user        User               @relation(fields: [userId], references: [id])
+  classroom   Classroom?         @relation(fields: [classroomId], references: [id])
+
+  @@unique([userId, classroomId])
+}
+
+model Fee {
+  id           String      @id @default(cuid())
+  title        String
+  description  String?
+  amount       Float
+  classLevelId String?
+  isActive     Boolean     @default(true)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  classLevel   ClassLevel? @relation(fields: [classLevelId], references: [id])
+  payments     Payment[]
+
+  sessionId String?
+  termId    String?
+
+  sessionRef AcademicSession? @relation(fields: [sessionId], references: [id])
+  termRef    AcademicTerm?    @relation(fields: [termId], references: [id])
+
+  @@unique([title, sessionId, termId, classLevelId])
+}
+
+model Payment {
+  id              String       @id @default(cuid())
+  userId          String
+  feeId           String
+  amountPaid      Float        @default(0)
+  balance         Float
+  isPaid          Boolean      @default(false)
+  dateDue         DateTime?
+  paymentDate     DateTime?
+  paymentMode     PaymentMode?
+  reference       String?
+  note            String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  lastUpdatedById String?
+  fee             Fee          @relation(fields: [feeId], references: [id])
+  lastUpdatedBy   User?        @relation("PaymentLastUpdatedBy", fields: [lastUpdatedById], references: [id])
+  user            User         @relation(fields: [userId], references: [id])
+
+  @@unique([userId, feeId])
+}
+
+model Guardian {
+  id           String   @id @default(cuid())
+  title        String
+  firstName    String
+  lastName     String
+  gender       Gender
+  phoneNumber  String
+  email        String
+  address      String
+  passport     String?
+  relationship String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  wards        User[]
+}
+
+model ClassLevel {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  classrooms Classroom[]
+  fees       Fee[]
+  subjects   Subject[]
+}
+
+model Classroom {
+  id           String  @id @default(cuid())
+  classLevelId String
+  arm          String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teacherSubjectAssignments TeacherAndSubjectJointTable[]
+
+  classLevel         ClassLevel                   @relation(fields: [classLevelId], references: [id])
+  students           User[]
+  overseers          ClassOverseer[]
+  studentEnrollments StudentClassroomEnrollment[]
+  promotionsFrom     StudentPromotion[]           @relation("StudentPromotionFromClassroom")
+  promotionsTo       StudentPromotion[]           @relation("StudentPromotionToClassroom")
+
+  @@unique([classLevelId, arm])
+}
+
+model Subject {
+  id           String                        @id @default(cuid())
+  title        String
+  code         String?
+  category     String?
+  description  String?
+  isActive     Boolean                       @default(true)
+  classLevelId String
+  createdAt    DateTime                      @default(now())
+  updatedAt    DateTime                      @updatedAt
+  scores       Score[]
+  classLevel   ClassLevel                    @relation(fields: [classLevelId], references: [id])
+  teachers     TeacherAndSubjectJointTable[]
+
+  @@unique([title, classLevelId])
+}
+
+model Score {
+  id              String   @id @default(cuid())
+  resultId        String
+  subjectId       String
+  caScore         Float
+  examScore       Float
+  totalScore      Float?
+  grade           String?
+  remark          String?
+  locked          Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lastUpdatedById String?
+  lastUpdatedBy   User?    @relation("ScoreLastUpdatedBy", fields: [lastUpdatedById], references: [id])
+  result          Result   @relation(fields: [resultId], references: [id])
+  subject         Subject  @relation(fields: [subjectId], references: [id])
+
+  @@unique([resultId, subjectId])
+}
+
+model AcademicSession {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  isCurrent Boolean   @default(false)
+  startDate DateTime?
+  endDate   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  terms   AcademicTerm[]
+  fees    Fee[]
+  results Result[]
+
+  teacherSubjectAssignments TeacherAndSubjectJointTable[]
+  studentEnrollments        StudentClassroomEnrollment[]
+  promotionsFrom            StudentPromotion[]            @relation("StudentPromotionFromSession")
+  promotionsTo              StudentPromotion[]            @relation("StudentPromotionToSession")
+
+  @@unique([isCurrent])
+}
+
+model AcademicTerm {
+  id        String    @id @default(cuid())
+  name      Term
+  isCurrent Boolean   @default(false)
+  startDate DateTime?
+  endDate   DateTime?
+
+  sessionId String
+  session   AcademicSession @relation(fields: [sessionId], references: [id])
+
+  fees    Fee[]
+  results Result[]
+
+  teacherSubjectAssignments TeacherAndSubjectJointTable[]
+  studentEnrollments        StudentClassroomEnrollment[]
+  promotionsFrom            StudentPromotion[]            @relation("StudentPromotionFromTerm")
+  promotionsTo              StudentPromotion[]            @relation("StudentPromotionToTerm")
+
+  @@unique([name, sessionId])
+}
+
+model StudentClassroomEnrollment {
+  id          String           @id @default(cuid())
+  userId      String
+  classroomId String
+  sessionId   String
+  termId      String
+  status      EnrollmentStatus @default(ACTIVE)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  user      User            @relation(fields: [userId], references: [id])
+  classroom Classroom       @relation(fields: [classroomId], references: [id])
+  session   AcademicSession @relation(fields: [sessionId], references: [id])
+  term      AcademicTerm    @relation(fields: [termId], references: [id])
+
+  @@unique([userId, sessionId, termId])
+  @@index([classroomId, sessionId, termId])
+  @@index([userId])
+}
+
+model StudentPromotion {
+  id             String                        @id @default(cuid())
+  studentId      String
+  action         StudentMovementType
+  mode           StudentMovementMode           @default(MANUAL)
+  approvalStatus StudentMovementApprovalStatus @default(NOT_REQUIRED)
+  reason         String?
+  note           String?
+
+  fromClassroomId String?
+  toClassroomId   String?
+  fromSessionId   String?
+  toSessionId     String?
+  fromTermId      String?
+  toTermId        String?
+
+  performedById String?
+  approvedById  String?
+  approvedAt    DateTime?
+  metadata      Json?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  student       User             @relation("StudentPromotionStudent", fields: [studentId], references: [id])
+  fromClassroom Classroom?       @relation("StudentPromotionFromClassroom", fields: [fromClassroomId], references: [id])
+  toClassroom   Classroom?       @relation("StudentPromotionToClassroom", fields: [toClassroomId], references: [id])
+  fromSession   AcademicSession? @relation("StudentPromotionFromSession", fields: [fromSessionId], references: [id])
+  toSession     AcademicSession? @relation("StudentPromotionToSession", fields: [toSessionId], references: [id])
+  fromTerm      AcademicTerm?    @relation("StudentPromotionFromTerm", fields: [fromTermId], references: [id])
+  toTerm        AcademicTerm?    @relation("StudentPromotionToTerm", fields: [toTermId], references: [id])
+  performedBy   User?            @relation("StudentPromotionPerformedBy", fields: [performedById], references: [id])
+  approvedBy    User?            @relation("StudentPromotionApprovedBy", fields: [approvedById], references: [id])
+
+  @@index([studentId])
+  @@index([fromClassroomId])
+  @@index([toClassroomId])
+  @@index([performedById])
+}
+
+model Result {
+  id                 String    @id @default(cuid())
+  userId             String
+  total              Float?
+  average            Float?
+  percentage         Float?
+  position           Int?
+  classLevelPosition Int?
+  remark             String?
+  published          Boolean   @default(false)
+  locked             Boolean   @default(false)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  lastRecalculatedAt DateTime?
+  user               User      @relation(fields: [userId], references: [id])
+  scores             Score[]
+
+  sessionId String
+  termId    String?
+
+  sessionRef AcademicSession? @relation(fields: [sessionId], references: [id])
+  termRef    AcademicTerm?    @relation(fields: [termId], references: [id])
+
+  @@unique([userId, sessionId, termId])
+}
+
+model TeacherAndSubjectJointTable {
+  id          String   @id @default(cuid())
+  userId      String
+  subjectId   String
+  classroomId String
+  sessionId   String
+  termId      String
+  createdAt   DateTime @default(now())
+
+  user      User            @relation(fields: [userId], references: [id])
+  subject   Subject         @relation(fields: [subjectId], references: [id])
+  classroom Classroom       @relation(fields: [classroomId], references: [id])
+  session   AcademicSession @relation(fields: [sessionId], references: [id])
+  term      AcademicTerm    @relation(fields: [termId], references: [id])
+
+  @@unique([userId, subjectId, classroomId, sessionId, termId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation("UserSessions", fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  idToken               String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation("UserAccounts", fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum UserType {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum UserTechnicalRole {
+  ADMIN
+  SUPER_ADMIN
+  STUDENT
+  TEACHER
+  FINANCE_ADMIN
+  TECH_ADMIN
+  SCHOOL_ADMIN
+  CEO
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  UNAPPROVED
+  SUSPENDED
+  TRANSFERRED
+  GRADUATED
+  EXPELLED
+  RESIGNED
+  SACKED
+  DECEASED
+}
+
+enum Term {
+  FIRST_TERM
+  SECOND_TERM
+  THIRD_TERM
+}
+
+enum PaymentMode {
+  CASH
+  BANK_TRANSFER
+  POS
+  CARD_ONLINE
+  CHEQUE
+  USSD
+}
+
+enum ClassOverseerRole {
+  MAIN
+  ASSISTANT
+}
+
+enum StudentMovementType {
+  PROMOTION
+  DEMOTION
+  TRANSFER
+  REPEAT
+  WITHDRAWAL
+  GRADUATION
+}
+
+enum StudentMovementMode {
+  MANUAL
+  BULK
+}
+
+enum StudentMovementApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  NOT_REQUIRED
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  PROMOTED
+  REPEATED
+  TRANSFERRED
+  WITHDRAWN
+  GRADUATED
+}
