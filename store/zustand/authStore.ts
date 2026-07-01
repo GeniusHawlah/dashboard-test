@@ -3,33 +3,27 @@ import logoutAction from "@/actions/auth-actions/logoutAction";
 import signUpAction from "@/actions/auth-actions/signUpAction";
 import { NETWORK_ERROR_MESSAGE } from "@/utils/constants";
 import {
-  logActionFailure,
-  logActionStart,
-  logActionSuccess,
-} from "@/utils/ordinaryConsoleLogger";
-import { RelativeRoutes } from "@/utils/enum";
-import {
-  AuthStoreInterface,
-  InitialPasswordDataInterface,
-  ForgotPasswordDataInterface,
-  LoginDataInterface,
-  SignUpDataInterface,
-  ResetPasswordDataInterface,
-} from "@/utils/types";
-import { guardError, networkError } from "@/utils/error-helpers";
-import { toast } from "react-toastify";
-import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import { globalStore } from "./globalStore";
-import {
   buildPicsumPassport,
   getDemoAccount,
   saveDemoAccount,
 } from "@/utils/demo-auth";
+import { RelativeRoutes } from "@/utils/enum";
+import { guardError, networkError } from "@/utils/error-helpers";
+import {
+  logActionFailure,
+  logActionStart,
+  logActionSuccess,
+} from "@/utils/ordinaryConsoleLogger";
+import {
+  AuthStoreInterface,
+  LoginDataInterface,
+  SignUpDataInterface,
+} from "@/utils/types";
+import { toast } from "react-toastify";
+import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
+import { globalStore } from "./globalStore";
 
-const GENERAL_FETCH_ERROR_MESSAGE =
-  "Something went wrong. Please try again later.";
-const PASSWORD_RESET_SUCCESS_FLAG = "GoFinance:password-reset-success";
 const GENERAL_LOGOUT_ERROR_MESSAGE = "Failed to log out. Please try again.";
 
 export const authStore = create<AuthStoreInterface>()(

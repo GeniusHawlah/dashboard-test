@@ -137,46 +137,12 @@ export interface CreateAdminFormStateInterface {
   };
 }
 
-//#------------USER STORES-------------------
-
-export interface GuardianStoreInterface {
-  guardianFormState: CreateGuardianFormState;
-  setGuardianFormState: (value: CreateGuardianFormState) => void;
-  createGuardianHandler: (
-    guardianData: CreateGuardianFormInterface,
-  ) => Promise<void>;
-}
-
-export interface StudentStoreInterface {
-  // registerStudentHandler: (regData: UserRegDataInterface) => Promise<boolean>;
-  // regData: UserRegDataInterface | null;
-  // setRegData: (
-  //   name: keyof UserRegDataInterface,
-  //   value: string | number,
-  // ) => void;
-  // regFormState: UserRegFormStateInterface;
-  // setRegFormState: (regData: UserRegFormStateInterface) => void;
-}
-
 export interface AdminStoreInterface {
   createAdminFormData: CreateAdminFormDataInterface;
   setCreateAdminFormData: (value: CreateAdminFormDataInterface) => void;
   resetCreateAdminFormData: () => void;
   createAdminFormState: CreateAdminFormStateInterface;
   setCreateAdminFormState: (value: CreateAdminFormStateInterface) => void;
-}
-
-export interface ProgramStoreInterface {
-  createProgramFormData: CreateProgramFormDataInterface;
-  setCreateProgramFormData: (value: CreateProgramFormDataInterface) => void;
-  resetCreateProgramFormData: () => void;
-  createProgramFormState: CreateProgramFormState | null;
-  setCreateProgramFormState: (value: CreateProgramFormState | null) => void;
-  createProgramHandler: (
-    programData: CreateProgramDataInterface,
-  ) => Promise<boolean>;
-  applyProgramHandler: (programId: string) => Promise<boolean>;
-  changeProgramStageHandler: (programId: string) => Promise<boolean>;
 }
 
 export interface AuthStoreInterface {
@@ -187,36 +153,8 @@ export interface AuthStoreInterface {
   signUpFormState: SignUpFormStateInterface;
   setSignUpFormState: (value: SignUpFormStateInterface) => void;
   signUpHandler: (userData: SignUpDataInterface) => Promise<void>;
-  initialPasswordFormState: InitialPasswordFormStateInterface;
-  setInitialPasswordFormState: (
-    value: InitialPasswordFormStateInterface,
-  ) => void;
-  changeInitialPasswordHandler: (
-    userData: InitialPasswordDataInterface,
-  ) => Promise<void>;
-  forgotPasswordFormState: ForgotPasswordFormStateInterface;
-  setForgotPasswordFormState: (value: ForgotPasswordFormStateInterface) => void;
-  forgotPasswordHandler: (
-    userData: ForgotPasswordDataInterface,
-  ) => Promise<boolean>;
-  resetPasswordFormState: ResetPasswordFormStateInterface;
-  setResetPasswordFormState: (value: ResetPasswordFormStateInterface) => void;
-  resetPasswordHandler: (
-    userData: ResetPasswordDataInterface,
-  ) => Promise<boolean>;
-  logoutHandler: () => Promise<void>;
-}
 
-export interface EmailStoreInterface {
-  contactData: ContactUsFormInterface;
-  setContactData: <K extends keyof ContactUsFormInterface>(
-    name: K,
-    value: ContactUsFormInterface[K],
-  ) => void;
-  resetContactData: () => void;
-  contactFormState: ContactUsFormStateInterface | null;
-  setContactFormState: (value: ContactUsFormStateInterface | null) => void;
-  contactUsHandler: (contactData: ContactUsFormInterface) => Promise<boolean>;
+  logoutHandler: () => Promise<void>;
 }
 
 export interface MenteeRegDataInterface {
@@ -327,41 +265,6 @@ export interface MentorStoreInterface {
   regFormState: MentorRegFormStateInterface;
   setRegFormState: (value: MentorRegFormStateInterface) => void;
   registerHandler: (regData: MentorRegDataInterface) => Promise<boolean>;
-}
-
-export interface EventStoreInterface {
-  createEventFormData: CreateEventFormDataInterface;
-  setCreateEventFormData: (value: CreateEventFormDataInterface) => void;
-  resetCreateEventFormData: () => void;
-  createEventFormState: CreateEventFormState | null;
-  setCreateEventFormState: (value: CreateEventFormState | null) => void;
-  createEventHandler: (eventData: CreateEventDataInterface) => Promise<boolean>;
-  updateEventFormData: UpdateEventFormDataInterface;
-  setUpdateEventFormData: (value: UpdateEventFormDataInterface) => void;
-  resetUpdateEventFormData: () => void;
-  updateEventFormState: UpdateEventFormState | null;
-  setUpdateEventFormState: (value: UpdateEventFormState | null) => void;
-  updateEventHandler: (
-    eventId: string,
-    eventData: UpdateEventDataInterface,
-  ) => Promise<boolean>;
-}
-
-export interface EventScoreStoreInterface {
-  createEventScoreHandler: (
-    eventScoreData: CreateEventScoreFormInterface,
-  ) => Promise<void>;
-  eventScoreFormState: CreateEventScoreFormState | null;
-  setEventScoreFormState: (value: CreateEventScoreFormState) => void;
-}
-
-export interface ScoreStoreInterface {
-  selectedScoreId: string | null;
-  setSelectedScoreId: (value: string | null) => void;
-
-  syncMissingScoresHandler: () => Promise<boolean>;
-  scoreFormState: CreateScoreFormState | null;
-  setScoreFormState: (value: CreateScoreFormState) => void;
 }
 
 //#-------------GLOBAL STORE------------------
