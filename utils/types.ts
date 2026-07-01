@@ -1,5 +1,5 @@
-import { Gender, UserStatus as PrismaUserStatus } from "@prisma/client";
-import type { Prisma, UserRole } from "@prisma/client";
+import { Gender, UserStatus as PrismaUserStatus } from "@/utils/prisma";
+import type { Prisma, UserRole } from "@/utils/prisma";
 import { ReactNode } from "react";
 import type { UpdateMenteeStatusActionData } from "@/actions/mentee-action/updateMenteeStatusAction";
 import type { FakeAuthSession } from "@/utils/auth-session";

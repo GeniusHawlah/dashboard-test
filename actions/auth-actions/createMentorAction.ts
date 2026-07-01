@@ -14,7 +14,7 @@ import {
   logActionSuccess,
 } from "@/utils/serverActionLogger";
 import { CreateMentorSchema } from "@/utils/zod/createMentorSchema";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/utils/prisma";
 import { z } from "zod";
 import { type MentorRegDataInterface } from "@/utils/types";
 

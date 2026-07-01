@@ -1,12 +1,7 @@
-import { db } from "@/lib/db";
-import { getCachedSession } from "@/utils/getCachedSession";
-import { RelativeRoutes } from "@/utils/enum";
-import { isAdmin } from "@/utils/auth-helpers";
 import { Suspense } from "react";
 import Navbar from "@/components/nav/Navbar";
 import SideNav from "@/components/nav/SideNav";
 import SideNavSkeleton from "@/components/nav/SideNavSkeleton";
-import { redirect } from "next/navigation";
 
 export default function DashboardLayout({
   children,
@@ -57,21 +52,4 @@ export default function DashboardLayout({
       </div>
     </div>
   );
-}
-
-async function RedirectFirstLogin() {
-  const session = await getCachedSession();
-
-  if (!session) return null;
-
-  const user = await db.user.findUnique({
-    where: { id: session.user.id },
-    select: { isFirstLogin: true, role: true },
-  });
-
-  if (user?.isFirstLogin && isAdmin({ session, providedRole: user.role })) {
-    redirect(RelativeRoutes.CHANGE_INITIAL_PASSWORD_PAGE);
-  }
-
-  return null;
 }

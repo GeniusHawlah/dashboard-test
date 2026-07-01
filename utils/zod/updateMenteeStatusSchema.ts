@@ -1,4 +1,4 @@
-import { UserStatus } from "@prisma/client";
+import { UserStatus } from "@/utils/prisma";
 import * as z from "zod";
 
 export const UpdateMenteeStatusParamsSchema = z.object({
@@ -12,4 +12,3 @@ export const UpdateMenteeStatusBodySchema = z.object({
 export const UpdateMenteeStatusActionSchema = UpdateMenteeStatusParamsSchema.merge(
   UpdateMenteeStatusBodySchema,
 );
-

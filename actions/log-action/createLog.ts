@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 import { formatTitledName } from "@/utils/utils";
-import { ActionLogStatus, Prisma, UserRole } from "@prisma/client";
+import { ActionLogStatus, Prisma, UserRole } from "@/utils/prisma";
 import { headers } from "next/headers";
 
 type LogPerformer = {

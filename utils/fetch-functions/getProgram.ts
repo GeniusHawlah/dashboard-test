@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { NETWORK_ERROR_MESSAGE } from "@/utils/constants";
 import { guardError, networkError } from "@/utils/error-helpers";
-import { ProgramEnrollmentStatus } from "@prisma/client";
+import { ProgramEnrollmentStatus } from "@/utils/prisma";
 import { cacheLife, cacheTag } from "next/cache";
 
 export interface ProgramMentorBrief {

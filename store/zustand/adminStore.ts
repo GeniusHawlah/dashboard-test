@@ -5,7 +5,7 @@ import {
   CreateAdminFormDataInterface,
   CreateAdminFormStateInterface,
 } from "@/utils/types";
-import { Gender, UserRole } from "@prisma/client";
+import { Gender, UserRole } from "@/utils/prisma";
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";

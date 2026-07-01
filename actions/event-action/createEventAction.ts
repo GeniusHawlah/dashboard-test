@@ -24,7 +24,7 @@ import {
   CreateEventSchema,
   type CreateEventRequest,
 } from "@/utils/zod/createEventSchema";
-import { ProgramEnrollmentStatus, UserStatus } from "@prisma/client";
+import { ProgramEnrollmentStatus, UserStatus } from "@/utils/prisma";
 import { updateTag } from "next/cache";
 import { z } from "zod";
 import { sendEmail } from "@/utils/sendEmail";

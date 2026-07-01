@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { Gender } from "@prisma/client";
+import { Gender } from "@/utils/prisma";
 import createMenteeAction from "@/actions/auth-actions/createMenteeAction";
 import updateMenteeStatusAction, {
   type UpdateMenteeStatusActionData,

@@ -14,7 +14,7 @@ import {
   logActionSuccess,
 } from "@/utils/serverActionLogger";
 import { CreateMenteeSchema } from "@/utils/zod/createMenteeSchema";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/utils/prisma";
 import { z } from "zod";
 import { type MenteeRegDataInterface } from "@/utils/types";
 

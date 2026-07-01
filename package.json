@@ -4,19 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prisma-GENERATE_ONLY-mig:dev": "npx prisma migrate dev --create-only",
-    "prisma-APPLY-mig:dev": "npx prisma migrate dev --skip-generate",
-    "prisma-GEN_APPLY-mig:dev": "npx prisma migrate dev",
-    "prisma:EXECUTE_MIGRATION": "npx prisma db execute",
-    "prisma:MARK_AS_APPLIED": "npx prisma migrate resolve",
-    "prisma:seed": "node prisma/seed.js",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^8.5.0",

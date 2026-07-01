@@ -1,6 +1,6 @@
 import { isMentee } from "@/utils/auth-helpers";
 import { db } from "@/lib/db";
-import { ProgramEnrollmentStatus, UserRole } from "@prisma/client";
+import { ProgramEnrollmentStatus, UserRole } from "@/utils/prisma";
 import { formatDate } from "@/utils/utils";
 import { cacheLife, cacheTag } from "next/cache";
 

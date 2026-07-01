@@ -10,7 +10,7 @@ import { TITLES } from "@/utils/constants";
 import { RelativeRoutes } from "@/utils/enum";
 import type { ImageInputValue } from "@/utils/imageUploadTypes";
 import { capitalizeFirstLetter } from "@/utils/utils";
-import { Gender } from "@prisma/client";
+import { Gender } from "@/utils/prisma";
 import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

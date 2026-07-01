@@ -3,7 +3,7 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { logActionFailure } from "@/utils/serverActionLogger";
-import { UserStatus } from "@prisma/client";
+import { UserStatus } from "@/utils/prisma";
 
 export default async function checkIsActiveAction(
   userId: string | undefined,

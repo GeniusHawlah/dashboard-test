@@ -26,7 +26,7 @@ import {
 import { updateTag } from "next/cache";
 import { z } from "zod";
 import { toTitleCase } from "@/utils/utils";
-import { UserRole, UserStatus } from "@prisma/client";
+import { UserRole, UserStatus } from "@/utils/prisma";
 
 const MONTH_ABBREVIATIONS = [
   "JAN",

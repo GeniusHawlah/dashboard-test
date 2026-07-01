@@ -3,7 +3,7 @@
 import { Eye, EyeOff, ImagePlus, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { type ChangeEvent, type FormEvent, useId, useState } from "react";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/utils/prisma";
 
 import { authStore } from "@/store/zustand/authStore";
 import { globalStore } from "@/store/zustand/globalStore";
@@ -71,7 +71,7 @@ export default function SignUpForm() {
             Create Account
           </h1>
           <p className="mt-2 text-base text-slate-500">
-            Fill the form and we&apos;ll explain what a real signup would do.
+            Create a local test account to simulate the signup flow.
           </p>
         </div>
 

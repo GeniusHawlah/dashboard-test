@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 import { guardError } from "@/utils/error-helpers";
-import type { Prisma, PrismaClient } from "@prisma/client";
+import type { Prisma, PrismaClient } from "@/utils/prisma";
 
 type EventDbClient = Prisma.TransactionClient | PrismaClient;
 

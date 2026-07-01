@@ -13,7 +13,7 @@ import {
   AssignmentStatus,
   ProgramEnrollmentStatus,
   UserRole,
-} from "@prisma/client";
+} from "@/utils/prisma";
 import { cacheLife, cacheTag } from "next/cache";
 
 type MenteeOverviewResponse = {

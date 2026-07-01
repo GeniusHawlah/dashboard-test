@@ -5,7 +5,7 @@ import {
   MentorRegDataInterface,
   MentorRegFormStateInterface,
 } from "@/utils/types";
-import { Gender } from "@prisma/client";
+import { Gender } from "@/utils/prisma";
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";

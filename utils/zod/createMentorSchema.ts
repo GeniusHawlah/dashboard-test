@@ -1,4 +1,4 @@
-import { Gender, UserRole } from "@prisma/client";
+import { Gender, UserRole } from "@/utils/prisma";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import {
   optionalImageSchema,

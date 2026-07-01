@@ -1,4 +1,4 @@
-import { UserRole, UserStatus } from "@prisma/client";
+import { UserRole, UserStatus } from "@/utils/prisma";
 import { randomUUID } from "crypto";
 import {
   buildPicsumPassport,

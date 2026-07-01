@@ -1,4 +1,4 @@
-import { UserRole, UserStatus } from "@prisma/client";
+import { UserRole, UserStatus } from "@/utils/prisma";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import * as z from "zod";
 

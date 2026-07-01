@@ -1,4 +1,4 @@
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/utils/prisma";
 import { RelativeRoutes } from "./enum";
 
 type RoleSource = {
@@ -110,11 +110,7 @@ export function isMentor(source: RoleSource): boolean {
 }
 
 export function getUserDashboardRoute(session: any): RelativeRoutes | null {
-  if (isTechAdmin({ session })) return RelativeRoutes.TECH_ADMIN_HOMEPAGE;
-  if (isSuperAdmin({ session })) return RelativeRoutes.SUPER_ADMIN_HOMEPAGE;
-  if (isAdmin({ session })) return RelativeRoutes.ADMIN_HOMEPAGE;
-  if (isMentor({ session })) return RelativeRoutes.MENTOR_HOMEPAGE;
-  if (isMentee({ session })) return RelativeRoutes.MENTEE_HOMEPAGE;
+  if (session) return RelativeRoutes.DASHBOARD_HOMEPAGE;
 
   return null;
 }

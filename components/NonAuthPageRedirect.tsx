@@ -7,7 +7,7 @@ async function NonAuthPageRedirect() {
   const session = (await getCachedSession()) || false;
 
   if (session) {
-    redirect(getUserDashboardRoute(session) ?? RelativeRoutes.MENTEE_HOMEPAGE);
+    redirect(getUserDashboardRoute(session) ?? RelativeRoutes.DASHBOARD_HOMEPAGE);
   }
 
   return null;

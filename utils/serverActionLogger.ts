@@ -1,5 +1,5 @@
 import { createLog } from "@/actions/log-action/createLog";
-import { ActionLogStatus } from "@prisma/client";
+import { ActionLogStatus } from "@/utils/prisma";
 import { getCachedSession } from "@/utils/getCachedSession";
 
 type ActionLogContext = Record<string, unknown>;

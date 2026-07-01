@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Gender, UserRole } from "@prisma/client";
+import { Gender, UserRole } from "@/utils/prisma";
 import {
   PROGRAM_BENEFIT_SUGGESTIONS,
   PROGRAM_REQUIREMENT_SUGGESTIONS,

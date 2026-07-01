@@ -34,7 +34,7 @@ import {
   ProgramEnrollmentStatus,
   UserRole,
   UserStatus,
-} from "@prisma/client";
+} from "@/utils/prisma";
 import { updateTag } from "next/cache";
 
 export interface UpdateMenteeStatusActionData {

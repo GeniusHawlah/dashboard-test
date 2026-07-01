@@ -26,7 +26,7 @@ import {
   CreateAdminSchema,
   type CreateAdminRequest,
 } from "@/utils/zod/createAdminSchema";
-import { UserRole, UserStatus } from "@prisma/client";
+import { UserRole, UserStatus } from "@/utils/prisma";
 import { updateTag } from "next/cache";
 import { z } from "zod";
 

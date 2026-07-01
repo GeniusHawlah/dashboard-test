@@ -25,7 +25,7 @@ import {
   AssignmentStatus,
   Prisma,
   ProgramEnrollmentStatus,
-} from "@prisma/client";
+} from "@/utils/prisma";
 import { updateTag } from "next/cache";
 
 export interface ApplyProgramActionParams {

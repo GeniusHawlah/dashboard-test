@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { ProgramEnrollmentStatus, type Prisma, type PrismaClient } from "@prisma/client";
+import { ProgramEnrollmentStatus, type Prisma, type PrismaClient } from "@/utils/prisma";
 
 type EventDbClient = Prisma.TransactionClient | PrismaClient;
 

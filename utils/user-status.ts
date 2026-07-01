@@ -1,4 +1,4 @@
-import { UserStatus } from "@prisma/client";
+import { UserStatus } from "@/utils/prisma";
 
 type UserStatusInput = UserStatus | string | null | undefined;
 

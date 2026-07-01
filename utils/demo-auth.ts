@@ -1,4 +1,4 @@
-import type { UserRole } from "@prisma/client";
+import type { UserRole } from "@/utils/prisma";
 
 export interface DemoAccount {
   firstName: string;

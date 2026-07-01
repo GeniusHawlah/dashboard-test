@@ -1,4 +1,4 @@
-import { Gender } from "@prisma/client";
+import { Gender } from "@/utils/prisma";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import { EDUCATION_LEVEL_VALUES } from "@/utils/education-level";
 import { optionalImageSchema } from "@/utils/zod/imageUploadSchema";

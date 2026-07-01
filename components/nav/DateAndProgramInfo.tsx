@@ -1,6 +1,6 @@
 import { getNavbarProgramInfo } from "@/utils/fetch-functions/getNavbarProgramInfo";
 import { getCachedSession } from "@/utils/getCachedSession";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/utils/prisma";
 import DateAndProgramInfoPanel from "./DateAndProgramInfoPanel";
 
 export default async function DateAndProgramInfo() {

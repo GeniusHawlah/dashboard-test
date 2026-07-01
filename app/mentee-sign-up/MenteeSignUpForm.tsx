@@ -14,7 +14,7 @@ import {
 } from "@/utils/education-level";
 import { RelativeRoutes } from "@/utils/enum";
 import type { ImageInputValue } from "@/utils/imageUploadTypes";
-import { Gender } from "@prisma/client";
+import { Gender } from "@/utils/prisma";
 import { Eye, EyeOff, GraduationCap, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

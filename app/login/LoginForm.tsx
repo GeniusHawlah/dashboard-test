@@ -159,15 +159,6 @@ export default function LoginForm() {
               ""}
           </div>
 
-          <div className="pt-1 text-center">
-            <Link
-              href={RelativeRoutes.FORGOT_PASSWORD_PAGE}
-              className="text-sm text-slate-500 transition hover:text-slate-900"
-            >
-              Forgot Password
-            </Link>
-          </div>
-
           <div className="text-center text-sm text-slate-500">
             Don&apos;t have an account?{" "}
             <Link

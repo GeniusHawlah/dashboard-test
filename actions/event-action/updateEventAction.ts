@@ -26,7 +26,7 @@ import {
   UpdateEventSchema,
   type UpdateEventRequest,
 } from "@/utils/zod/updateEventSchema";
-import { ProgramEnrollmentStatus, UserStatus } from "@prisma/client";
+import { ProgramEnrollmentStatus, UserStatus } from "@/utils/prisma";
 import { updateTag } from "next/cache";
 import { z } from "zod";
 import { RelativeRoutes } from "@/utils/enum";

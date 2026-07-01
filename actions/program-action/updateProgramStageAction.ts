@@ -17,7 +17,7 @@ import {
   logActionStart,
   logActionSuccess,
 } from "@/utils/serverActionLogger";
-import { AssignmentStatus, ProgramEnrollmentStatus } from "@prisma/client";
+import { AssignmentStatus, ProgramEnrollmentStatus } from "@/utils/prisma";
 import { updateTag } from "next/cache";
 import { z } from "zod";
 
